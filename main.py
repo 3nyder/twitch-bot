@@ -10,12 +10,15 @@ s.send("NICK {}\r\n".format(NICK).encode("utf-8"))
 s.send("JOIN {}\r\n".format(CHAN).encode("utf-8"))
 
 #Initialize the bot
-bot = Bot(s, CHAN)
+bot = Bot(s, CHAN, RATE)
 
 while True:
 	#example line from recv
     #:3nyder_bot!3nyder_bot@3nyder_bot.tmi.twitch.tv PRIVMSG #3nyder :bot to app
     response = s.recv(1024).decode("utf-8")
+
+    print(response)
+
     lines = response.split('\r\n')
     for line in lines:
     	line_arr = line.split(':')
@@ -25,8 +28,6 @@ while True:
 	    	user_info = user_info.split('!')
 	    	if len(user_info) > 1:
 	    		user = user_info[0]
-	    		print user, " wrote: ", message
-
 	    		bot.process(message)
 
     time.sleep(0.1)
