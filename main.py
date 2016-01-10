@@ -1,4 +1,5 @@
 from config import *
+from bot import *
 import socket
 import time
 
@@ -7,6 +8,9 @@ s.connect((HOST, PORT))
 s.send("PASS {}\r\n".format(PASS).encode("utf-8"))
 s.send("NICK {}\r\n".format(NICK).encode("utf-8"))
 s.send("JOIN {}\r\n".format(CHAN).encode("utf-8"))
+
+#Initialize the bot
+bot = Bot(s, CHAN)
 
 while True:
 	#example line from recv
@@ -23,6 +27,6 @@ while True:
 	    		user = user_info[0]
 	    		print user, " wrote: ", message
 
-	    		#bot.process(message)
+	    		bot.process(message)
 
     time.sleep(0.1)
