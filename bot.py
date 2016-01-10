@@ -14,6 +14,14 @@ class Bot:
 		self.channel = channel
 		self.rate = rate
 
+	def pong(self):
+		"""
+		For telling the server the bot it's alive.
+		"""
+		print "PONG"
+		self.chat.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
+		sleep(1.0 / self.rate)
+
 	def send(self,message):
 		"""
 	    Send a chat message to the server.
