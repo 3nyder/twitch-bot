@@ -33,6 +33,6 @@ while True:
 	    	user_info = user_info.split('!')
 	    	if len(user_info) > 1:
 	    		user = user_info[0]
-	    		bot.process(message)
+	    		bot.process(user, message)
 
     time.sleep(0.1)
